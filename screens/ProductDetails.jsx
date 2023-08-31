@@ -14,8 +14,14 @@ import {
   SimpleLineIcons,
 } from "@expo/vector-icons";
 import { COLORS, SIZES } from "../constants";
+import { useRoute } from "@react-navigation/native";
 
 const ProductDetails = ({ navigation }) => {
+  const route = useRoute();
+  const { item } = route.params;
+
+  console.log(item);
+
   const [count, setCount] = useState(1);
 
   const increment = () => {
@@ -40,16 +46,16 @@ const ProductDetails = ({ navigation }) => {
       </View>
       <Image
         source={{
-          uri: "https://img.freepik.com/free-psd/realistic-modern-bright-dining-room-with-wooden-table-chairs_176382-497.jpg?t=st=1693283160~exp=1693283760~hmac=1fe655ddcff678e58d0a552be7f0ec3c917966a8897937eaf8246e060242215d",
+          uri: item.imageUrl,
         }}
         style={styles.image}
       />
 
       <View style={styles.details}>
         <View style={styles.titleRow}>
-          <Text style={styles.title}>Product</Text>
+          <Text style={styles.title}>{item.title}</Text>
           <View style={styles.priceWrapper}>
-            <Text style={styles.price}>$ 660.88</Text>
+            <Text style={styles.price}>${item.price}</Text>
           </View>
         </View>
 
@@ -75,21 +81,14 @@ const ProductDetails = ({ navigation }) => {
 
         <View style={styles.descriptionWrapper}>
           <Text style={styles.description}>Description</Text>
-          <Text style={styles.descText}>
-            Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do
-            eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim
-            ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut
-            aliquip ex ea commodo consequat. Duis aute irure dolor in
-            reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla
-            pariatur
-          </Text>
+          <Text style={styles.descText}>{item.description}</Text>
         </View>
 
         <View style={{ marginBottom: SIZES.small }}>
           <View style={styles.location}>
             <View style={{ flexDirection: "row" }}>
               <Ionicons name="location-outline" size={20} />
-              <Text> Jakarta </Text>
+              <Text> {item.product_location}</Text>
             </View>
             <View style={{ flexDirection: "row" }}>
               <MaterialCommunityIcons name="truck" size={20} />

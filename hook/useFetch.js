@@ -1,0 +1,35 @@
+import { StyleSheet, Text, View } from "react-native";
+import React, { useEffect, useState } from "react";
+import axios from "axios";
+
+const useFetch = () => {
+  const [data, setData] = useState([]);
+  const [isLoading, setLoading] = useState(false);
+  const [error, setError] = useState(null);
+
+  const fetchData = async () => {
+    setLoading(true);
+
+    try {
+      const response = await axios.get("http://localhost:3000/api/products/");
+      setData(response.data);
+      setLoading(false);
+    } catch (error) {
+      setError(error);
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  useEffect(() => {
+    fetchData();
+  }, []);
+
+  const refetch = () => {
+    setLoading(true);
+    fetchData();
+  };
+  return { data, isLoading, error, refetch };
+};
+
+export default useFetch;

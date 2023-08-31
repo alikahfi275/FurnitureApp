@@ -5,15 +5,17 @@ import { COLORS, SIZES } from "../../constants";
 import { Ionicons } from "@expo/vector-icons";
 import { useNavigation } from "@react-navigation/native";
 
-const ProductsCardView = () => {
+const ProductsCardView = ({ item }) => {
   const navigation = useNavigation();
   return (
-    <TouchableOpacity onPress={() => navigation.navigate("ProductDetails")}>
+    <TouchableOpacity
+      onPress={() => navigation.navigate("ProductDetails", { item })}
+    >
       <View style={styles.container}>
         <View style={styles.imageContainer}>
           <Image
             source={{
-              uri: "https://img.freepik.com/free-psd/realistic-modern-bright-dining-room-with-wooden-table-chairs_176382-497.jpg?t=st=1693283160~exp=1693283760~hmac=1fe655ddcff678e58d0a552be7f0ec3c917966a8897937eaf8246e060242215d",
+              uri: item.imageUrl,
             }}
             style={styles.image}
           />
@@ -21,12 +23,12 @@ const ProductsCardView = () => {
 
         <View style={styles.details}>
           <Text style={styles.title} numberOfLines={1}>
-            Product
+            {item.title}
           </Text>
           <Text style={styles.supplier} numberOfLines={1}>
-            Product
+            {item.supplier}
           </Text>
-          <Text style={styles.price}>$31223</Text>
+          <Text style={styles.price}>${item.price}</Text>
         </View>
 
         <TouchableOpacity style={styles.addBtn}>
