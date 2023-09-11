@@ -8,6 +8,10 @@ import BottomTabNavigation from "./navigation/BottomTabNavigation";
 import Cart from "./screens/Cart";
 import ProductDetails from "./screens/ProductDetails";
 import NewRivals from "./screens/NewRivals";
+import LoginPage from "./screens/LoginPage";
+import Orders from "./screens/Orders";
+import Favorites from "./screens/Favorites";
+import SignUp from "./screens/SignUp";
 
 const Stack = createNativeStackNavigator();
 
@@ -51,6 +55,26 @@ const App = () => {
         <Stack.Screen
           name="ProductList"
           component={NewRivals}
+          options={{ headerShown: false }}
+        />
+        <Stack.Screen
+          name="Login"
+          component={LoginPage}
+          options={{ headerShown: false }}
+        />
+        <Stack.Screen
+          name="Orders"
+          component={Orders}
+          options={{ headerShown: false }}
+        />
+        <Stack.Screen
+          name="Favorites"
+          component={Favorites}
+          options={{ headerShown: false }}
+        />
+        <Stack.Screen
+          name="SignUp"
+          component={SignUp}
           options={{ headerShown: false }}
         />
       </Stack.Navigator>
